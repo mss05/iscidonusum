@@ -4,15 +4,18 @@ function switchTab(viewId, element) {
         view.style.display = 'none';
     });
 
-    // 2. İstenen ekranı göster
-    document.getElementById('view-' + viewId).style.display = 'block';
+    // 2. İstenen ekranı aç
+    const targetView = document.getElementById('view-' + viewId);
+    if (targetView) {
+        targetView.style.display = 'block';
+    }
 
-    // 3. Alt menüdeki renkleri sıfırla
+    // 3. Tüm menülerin rengini pasif yap
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
     });
 
-    // 4. Tıklanan menüyü renkli yap
+    // 4. Tıklanan menüyü aktif yap
     if (element) {
         element.classList.add('active');
     }
