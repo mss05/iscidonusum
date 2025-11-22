@@ -13,13 +13,11 @@
 
     <header class="app-header">
         <div class="header-left">
-            <div class="logo-box">
-                <img src="yeni-logo.png" alt="Logo" class="header-logo">
-            </div>
+            <div class="logo-box"><img src="yeni-logo.png" alt="Logo" class="header-logo"></div>
             <span class="app-title">Emekçi Paneli</span>
         </div>
         <div class="wallet-badge">
-            <i class="fas fa-wallet"></i> 1.250 ₺
+            <i class="fas fa-wallet"></i> <span id="total-wallet">1.250 ₺</span>
         </div>
     </header>
 
@@ -27,34 +25,29 @@
 
         <div id="view-home" class="tab-view active">
             <div class="earnings-card">
-                <div class="card-top">
-                    <span>Günlük Kazanç</span>
-                    <span class="date">Bugün</span>
-                </div>
-                <h1 class="amount">450,00 ₺</h1>
-                <div class="progress-bg">
-                    <div class="progress-fill" style="width: 75%"></div>
-                </div>
-                <p class="goal-text">Hedef: 600₺ (%75 Tamamlandı)</p>
+                <div class="card-top"><span>Günlük Kazanç</span><span class="date">Bugün</span></div>
+                <h1 class="amount" id="daily-amount">450 ₺</h1>
+                <div class="progress-bg"><div class="progress-fill" id="daily-progress" style="width: 75%"></div></div>
+                <p class="goal-text">Hedef: 600₺</p>
             </div>
 
             <h3 class="section-title">Yakındaki Atıklar</h3>
             <div class="task-list">
-                <div class="task-card">
+                <div class="task-card" id="task-1">
                     <div class="task-icon cardboard"><i class="fas fa-box"></i></div>
                     <div class="task-info">
-                        <h4>Şehitkamil Market Arkası</h4>
-                        <p>Karton Atık • ~50kg • 200m</p>
+                        <h4>Market Arkası - Şehitkamil</h4>
+                        <p>Karton Atık • ~50kg • 50 TL</p>
                     </div>
-                    <button class="btn-go">Git</button>
+                    <button class="btn-go" onclick="openTaskModal('Market Arkası', 50)">Git</button>
                 </div>
-                <div class="task-card">
+                <div class="task-card" id="task-2">
                     <div class="task-icon plastic"><i class="fas fa-bottle-water"></i></div>
                     <div class="task-info">
                         <h4>OSB 2. Bölge Girişi</h4>
-                        <p>Plastik & Naylon • ~120kg • 1.5km</p>
+                        <p>Plastik • ~120kg • 120 TL</p>
                     </div>
-                    <button class="btn-go">Git</button>
+                    <button class="btn-go" onclick="openTaskModal('OSB 2. Bölge', 120)">Git</button>
                 </div>
             </div>
         </div>
@@ -62,55 +55,27 @@
         <div id="view-map" class="tab-view" style="display: none;">
             <div class="map-container">
                 <img src="map.jpg" alt="Harita" class="map-image">
-                
-                <div class="map-pin pin-1" onclick="alert('50kg Kağıt Atık')">
-                    <i class="fas fa-recycle"></i>
-                </div>
-                <div class="map-pin pin-2" onclick="alert('20kg Plastik Atık')">
-                    <i class="fas fa-industry"></i>
-                </div>
-                
-                <div class="map-toast">
-                    <i class="fas fa-info-circle"></i> Bölgende 3 aktif atık var.
-                </div>
+                <div class="map-pin pin-1" onclick="alert('Market Arkası: 50kg Kağıt')"><i class="fas fa-recycle"></i></div>
+                <div class="map-pin pin-2" onclick="alert('OSB Girişi: 20kg Plastik')"><i class="fas fa-industry"></i></div>
             </div>
         </div>
 
         <div id="view-social" class="tab-view" style="display: none;">
             <h3 class="section-title" style="padding: 0 5px;">Dönüşüm Meydanı</h3>
-            
-            <div class="social-feed">
+            <div class="social-feed" id="social-feed">
                 <div class="post-card">
                     <div class="post-header">
                         <div class="avatar">A</div>
-                        <div class="user-meta">
-                            <h5>Ahmet Usta</h5>
-                            <span>10 dk önce • Şahinbey</span>
-                        </div>
+                        <div class="user-meta"><h5>Ahmet Usta</h5><span>10 dk önce</span></div>
                     </div>
-                    <p>Parkın orada çok fazla cam şişe çıktı, aracı olan varsa yardıma gelebilir mi?</p>
+                    <p>Parkın orada çok fazla cam şişe çıktı, yardıma gelen olur mu?</p>
                     <div class="post-actions">
-                        <span><i class="far fa-heart"></i> 12</span>
+                        <span onclick="toggleLike(this)"><i class="far fa-heart"></i> 12</span>
                         <span><i class="far fa-comment"></i> 3</span>
                     </div>
                 </div>
-
-                <div class="post-card">
-                    <div class="post-header">
-                        <div class="avatar color-2">Z</div>
-                        <div class="user-meta">
-                            <h5>Zeynep Abla</h5>
-                            <span>1 saat önce • OSB</span>
-                        </div>
-                    </div>
-                    <p>Eldiven dağıtımı başlamış kooperatif binasında. İhtiyacı olan kaçırmasın.</p>
-                    <div class="post-actions">
-                        <span><i class="far fa-heart"></i> 45</span>
-                        <span><i class="far fa-comment"></i> 12</span>
-                    </div>
-                </div>
             </div>
-            <div class="fab-btn"><i class="fas fa-pen"></i></div>
+            <div class="fab-btn" onclick="openModal('modal-post')"><i class="fas fa-pen"></i></div>
         </div>
 
         <div id="view-profile" class="tab-view" style="display: none;">
@@ -118,45 +83,84 @@
                 <div class="profile-pic"><i class="fas fa-user"></i></div>
                 <h2>Mehmet Yılmaz</h2>
                 <span class="id-badge">ID: #TR-27-4829</span>
-                
-                <div class="stats-row">
-                    <div class="stat-box">
-                        <strong>12.5 Ton</strong>
-                        <span>Toplam</span>
-                    </div>
-                    <div class="stat-box">
-                        <strong>4.2 Bin ₺</strong>
-                        <span>Bu Ay</span>
-                    </div>
-                </div>
             </div>
-
             <div class="menu-list">
-                <div class="menu-item"><i class="fas fa-history"></i> Geçmiş İşlerim</div>
-                <div class="menu-item"><i class="fas fa-qrcode"></i> QR Kodum</div>
+                <div class="menu-item" onclick="openModal('modal-history')"><i class="fas fa-history"></i> Geçmiş İşlerim</div>
+                <div class="menu-item" onclick="openModal('modal-qr')"><i class="fas fa-qrcode"></i> QR Kodum</div>
                 <div class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</div>
             </div>
         </div>
+        <div style="height: 80px;"></div>
+    </main>
 
-        <div style="height: 80px;"></div> </main>
+    <div id="modal-qr" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Personel Kimliği</h3>
+            <i class="fas fa-qrcode" style="font-size: 8rem; margin: 20px 0;"></i>
+            <p>Yetkiliye okutunuz.</p>
+            <button class="btn-close" onclick="closeModal('modal-qr')">Kapat</button>
+        </div>
+    </div>
+
+    <div id="modal-history" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Geçmiş İşlerim</h3>
+            <ul class="history-list">
+                <li><span>📦 20kg Kağıt</span> <span>+40₺</span></li>
+                <li><span>🥤 15kg Plastik</span> <span>+60₺</span></li>
+                <li><span>🔩 5kg Metal</span> <span>+100₺</span></li>
+            </ul>
+            <button class="btn-close" onclick="closeModal('modal-history')">Kapat</button>
+        </div>
+    </div>
+
+    <div id="modal-post" class="modal-overlay">
+        <div class="modal-box">
+            <h3>Duruş Paylaş</h3>
+            <textarea placeholder="Bugün sahada neler oldu?..." class="post-input"></textarea>
+            <button class="btn-go" style="width:100%; margin-top:10px;" onclick="sharePost()">Paylaş</button>
+            <button class="btn-close" onclick="closeModal('modal-post')">İptal</button>
+        </div>
+    </div>
+
+    <div id="modal-task" class="modal-overlay">
+        <div class="modal-box">
+            <div id="task-step-1">
+                <h3><i class="fas fa-map-marker-alt"></i> Konuma Ulaşıldı</h3>
+                <p id="task-title-display">...</p>
+                <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                    <i class="fas fa-camera"></i>
+                    <p>Atık Fotoğrafını Yükle</p>
+                </div>
+                <input type="file" id="file-input" style="display: none;" onchange="fileUploaded()">
+                <button class="btn-go disabled" id="btn-complete-task" onclick="submitTask()">İşi Tamamla</button>
+                <button class="btn-close" onclick="closeModal('modal-task')">Vazgeç</button>
+            </div>
+
+            <div id="task-step-2" style="display: none;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: #e65100;"></i>
+                <h3>İşlem Onaylanıyor...</h3>
+                <p>İşiniz onay sürecindedir, lütfen bekleyiniz.</p>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 10px;">
+                    İş onayınız süresinde <strong>0 850 65 47 22</strong> nolu numaradan aranabilirsiniz.
+                </p>
+            </div>
+
+            <div id="task-step-3" style="display: none;">
+                <i class="fas fa-check-circle" style="font-size: 3rem; color: #2e7d32;"></i>
+                <h3>Onaylandı!</h3>
+                <p>Kazancınız cüzdana eklendi.</p>
+                <h1 style="color: #2e7d32;">+<span id="task-earn-display">0</span> ₺</h1>
+                <button class="btn-go" onclick="finishTaskProcess()">Harika</button>
+            </div>
+        </div>
+    </div>
 
     <nav class="bottom-nav">
-        <div class="nav-item active" onclick="switchTab('home', this)">
-            <i class="fas fa-home"></i>
-            <span>Görevler</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('map', this)">
-            <i class="fas fa-map-marked-alt"></i>
-            <span>Harita</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('social', this)">
-            <i class="fas fa-users"></i>
-            <span>Sosyal</span>
-        </div>
-        <div class="nav-item" onclick="switchTab('profile', this)">
-            <i class="fas fa-user"></i>
-            <span>Profil</span>
-        </div>
+        <div class="nav-item active" onclick="switchTab('home', this)"><i class="fas fa-home"></i><span>Görevler</span></div>
+        <div class="nav-item" onclick="switchTab('map', this)"><i class="fas fa-map-marked-alt"></i><span>Harita</span></div>
+        <div class="nav-item" onclick="switchTab('social', this)"><i class="fas fa-users"></i><span>Sosyal</span></div>
+        <div class="nav-item" onclick="switchTab('profile', this)"><i class="fas fa-user"></i><span>Profil</span></div>
     </nav>
 
     <script src="script.js"></script>
