@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dönüşüm Emekçisi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="app-body">
+
+    <header class="app-header">
+        <div class="header-left">
+            <div class="logo-box">
+                <img src="yeni-logo.png" alt="Logo" class="header-logo">
+            </div>
+            <span class="app-title">Emekçi Paneli</span>
+        </div>
+        <div class="wallet-badge">
+            <i class="fas fa-wallet"></i> 1.250 ₺
+        </div>
+    </header>
+
+    <main class="content-area">
+
+        <div id="view-home" class="tab-view active">
+            <div class="earnings-card">
+                <div class="card-top">
+                    <span>Günlük Kazanç</span>
+                    <span class="date">Bugün</span>
+                </div>
+                <h1 class="amount">450,00 ₺</h1>
+                <div class="progress-bg">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <p class="goal-text">Hedef: 600₺ (%75 Tamamlandı)</p>
+            </div>
+
+            <h3 class="section-title">Yakındaki Atıklar</h3>
+            <div class="task-list">
+                <div class="task-card">
+                    <div class="task-icon cardboard"><i class="fas fa-box"></i></div>
+                    <div class="task-info">
+                        <h4>Şehitkamil Market Arkası</h4>
+                        <p>Karton Atık • ~50kg • 200m</p>
+                    </div>
+                    <button class="btn-go">Git</button>
+                </div>
+                <div class="task-card">
+                    <div class="task-icon plastic"><i class="fas fa-bottle-water"></i></div>
+                    <div class="task-info">
+                        <h4>OSB 2. Bölge Girişi</h4>
+                        <p>Plastik & Naylon • ~120kg • 1.5km</p>
+                    </div>
+                    <button class="btn-go">Git</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-map" class="tab-view" style="display: none;">
+            <div class="map-container">
+                <img src="map.jpg" alt="Harita" class="map-image">
+                
+                <div class="map-pin pin-1" onclick="alert('50kg Kağıt Atık')">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="map-pin pin-2" onclick="alert('20kg Plastik Atık')">
+                    <i class="fas fa-industry"></i>
+                </div>
+                
+                <div class="map-toast">
+                    <i class="fas fa-info-circle"></i> Bölgende 3 aktif atık var.
+                </div>
+            </div>
+        </div>
+
+        <div id="view-social" class="tab-view" style="display: none;">
+            <h3 class="section-title" style="padding: 0 5px;">Dönüşüm Meydanı</h3>
+            
+            <div class="social-feed">
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="avatar">A</div>
+                        <div class="user-meta">
+                            <h5>Ahmet Usta</h5>
+                            <span>10 dk önce • Şahinbey</span>
+                        </div>
+                    </div>
+                    <p>Parkın orada çok fazla cam şişe çıktı, aracı olan varsa yardıma gelebilir mi?</p>
+                    <div class="post-actions">
+                        <span><i class="far fa-heart"></i> 12</span>
+                        <span><i class="far fa-comment"></i> 3</span>
+                    </div>
+                </div>
+
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="avatar color-2">Z</div>
+                        <div class="user-meta">
+                            <h5>Zeynep Abla</h5>
+                            <span>1 saat önce • OSB</span>
+                        </div>
+                    </div>
+                    <p>Eldiven dağıtımı başlamış kooperatif binasında. İhtiyacı olan kaçırmasın.</p>
+                    <div class="post-actions">
+                        <span><i class="far fa-heart"></i> 45</span>
+                        <span><i class="far fa-comment"></i> 12</span>
+                    </div>
+                </div>
+            </div>
+            <div class="fab-btn"><i class="fas fa-pen"></i></div>
+        </div>
+
+        <div id="view-profile" class="tab-view" style="display: none;">
+            <div class="profile-card">
+                <div class="profile-pic"><i class="fas fa-user"></i></div>
+                <h2>Mehmet Yılmaz</h2>
+                <span class="id-badge">ID: #TR-27-4829</span>
+                
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <strong>12.5 Ton</strong>
+                        <span>Toplam</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>4.2 Bin ₺</strong>
+                        <span>Bu Ay</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-list">
+                <div class="menu-item"><i class="fas fa-history"></i> Geçmiş İşlerim</div>
+                <div class="menu-item"><i class="fas fa-qrcode"></i> QR Kodum</div>
+                <div class="menu-item logout"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</div>
+            </div>
+        </div>
+
+        <div style="height: 80px;"></div> </main>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('home', this)">
+            <i class="fas fa-home"></i>
+            <span>Görevler</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('map', this)">
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Harita</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('social', this)">
+            <i class="fas fa-users"></i>
+            <span>Sosyal</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('profile', this)">
+            <i class="fas fa-user"></i>
+            <span>Profil</span>
+        </div>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
